@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-🔗 [View Portfolio Live](https://portfolio-three-vert-39.vercel.app/)
+🔗 [View Portfolio Live](https://portfolio-oslf.vercel.app/)
 
 ## 🛠️ Tech Stack
 
