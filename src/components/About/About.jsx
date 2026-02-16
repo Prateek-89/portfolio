@@ -26,7 +26,7 @@ const About = () => {
             <ReactTypingEffect
               text={[
                 'Fullstack Developer',
-                'App Developer',
+                
                 'Coder',
               ]}
               speed={100}
@@ -39,13 +39,17 @@ const About = () => {
             />
           </h3>
           {/* Location & Contact Info */}
-          <p className="text-sm sm:text-base md:text-base text-gray-500 mb-6 mt-6 flex items-center justify-center md:justify-start gap-2 flex-wrap">
-            <span>📍 Jhansi, India</span>
-            <span className="text-gray-600">•</span>
-            <span>📧 chaturvediprateek474@gmail.com</span>
-            <span className="text-gray-600">•</span>
-            <span>📱 +91 7388447405</span>
-          </p>
+          <div className="text-xs sm:text-sm md:text-base text-gray-500 mb-6 mt-6 space-y-2">
+            <p className="flex items-center justify-center md:justify-start gap-2">
+              <span>📍 Jhansi, India</span>
+            </p>
+            <p className="flex items-center justify-center md:justify-start gap-2 break-words">
+              <span>📧 chaturvediprateek474@gmail.com</span>
+            </p>
+            <p className="flex items-center justify-center md:justify-start gap-2">
+              <span>📱 +91 7388447405</span>
+            </p>
+          </div>
           {/* About Me Paragraph */}
           <p className="text-base sm:text-lg md:text-lg text-gray-400 mb-10 mt-8 leading-relaxed">
             I am a full-stack developer with over 1 years of experience in
