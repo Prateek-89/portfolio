@@ -10,6 +10,17 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // DEBUG: Log form data before sending
+    const formData = {
+      user_name: form.current?.user_name?.value,
+      user_email: form.current?.user_email?.value,
+      subject: form.current?.subject?.value,
+      message: form.current?.message?.value,
+    };
+    console.log("📧 EmailJS - Form data being sent:", formData);
+    console.log("📧 EmailJS - Service ID: service_u7ldm4a");
+    console.log("📧 EmailJS - Template ID: template_zvdfaa4");
+
     emailjs
       .sendForm(
         "service_u7ldm4a",  // Your EmailJS Service ID
@@ -18,12 +29,17 @@ const Contact = () => {
         "fHZvZZA_VWAKE_QAq"  // Your EmailJS Public Key
       )
       .then(
-        () => {
+        (response) => {
+          console.log("✅ EmailJS SUCCESS - Response:", response);
+          console.log("✅ Status:", response.status);
+          console.log("✅ Text:", response.text);
+          console.log("✅ Check Email History at: https://dashboard.emailjs.com/admin/account");
+          
           setIsSent(true);
           form.current.reset(); // Reset form fields after sending
-          toast.success("Message sent successfully! ✅", {
+          toast.success("Message sent successfully! ✅\nCheck your inbox in a few moments.", {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -32,10 +48,26 @@ const Contact = () => {
           });
         },
         (error) => {
-          console.error("Error sending message:", error);
-          toast.error("Failed to send message. Please try again.", {
+          console.error("❌ EmailJS FAILED - Full Error:", error);
+          console.error("❌ Status Code:", error.status);
+          console.error("❌ Error Text:", error.text);
+          
+          // Provide specific error guidance
+          let errorMessage = "Failed to send message. Please try again.";
+          if (error.status === 401) {
+            errorMessage = "❌ Authorization failed. Check Public Key or domain whitelist.";
+          } else if (error.status === 400) {
+            errorMessage = "❌ Bad request. Check form field names match template.";
+          } else if (error.status === 429) {
+            errorMessage = "❌ Rate limited. Wait a few moments and try again.";
+          }
+          
+          console.error("❌ Suggested fix:", errorMessage);
+          console.log("🔗 Debug guide: See EMAILJS_DEBUGGING_GUIDE.md in project root");
+          
+          toast.error(errorMessage, {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
