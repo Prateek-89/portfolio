@@ -44,7 +44,16 @@ const About = () => {
               <span>📍 Jhansi, India</span>
             </p>
             <p className="flex items-center justify-center md:justify-start gap-2 break-words">
-              <span>📧 chaturvediprateek474@gmail.com</span>
+              <a
+                href="#contact"
+                className="cursor-pointer hover:text-purple-400 transition-colors duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                📧 chaturvediprateek474@gmail.com
+              </a>
             </p>
             <p className="flex items-center justify-center md:justify-start gap-2">
               <span>📱 +91 7388447405</span>
